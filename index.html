@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Countdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            background: #000; /* Fallback color */
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: floatOrb 20s infinite;
+        }
+
+        @keyframes floatOrb {
+            0% {
+                transform: translateY(0);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-200px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 0.7;
+            }
+        }
+
+        .orb1 {
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 0, 0, 0.5);
+            top: 50%;
+            left: 20%;
+            animation-duration: 18s;
+            animation-delay: 0s;
+        }
+
+        .orb2 {
+            width: 250px;
+            height: 250px;
+            background: rgba(0, 255, 0, 0.5);
+            top: 20%;
+            left: 70%;
+            animation-duration: 22s;
+            animation-delay: 3s;
+        }
+
+        .orb3 {
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 0, 255, 0.5);
+            top: 70%;
+            left: 40%;
+            animation-duration: 25s;
+            animation-delay: 6s;
+        }
+
+        .orb4 {
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 0, 0.5);
+            top: 30%;
+            left: 80%;
+            animation-duration: 20s;
+            animation-delay: 1s;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        #countdown {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .time {
+            margin: 0 15px;
+        }
+
+        .time span:first-child {
+            display: block;
+            font-size: 3em;
+            font-weight: bold;
+        }
+
+        #surpriseButton {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #f39c12;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #surpriseButton:hover {
+            background-color: #e67e22;
+        }
+    </style>
+</head>
+<body>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="orb orb4"></div>
+    <div class="container">
+        <h1 id="message">Birthday countdown</h1>
+        <div id="countdown">
+            <div class="time">
+                <span id="days"></span>
+                <span>Days</span>
+            </div>
+            <div class="time">
+                <span id="hours"></span>
+                <span>Hours</span>
+            </div>
+            <div class="time">
+                <span id="minutes"></span>
+                <span>Minutes</span>
+            </div>
+            <div class="time">
+                <span id="seconds"></span>
+                <span>Seconds</span>
+            </div>
+        </div>
+        <button id="surpriseButton" onclick="window.location.href='https://shristikundlia.tiiny.site/'">Click Here for Surprise</button>
+    </div>
+    <script>
+        function countdown() {
+            const birthday = new Date("2024-08-10T00:00:00"); // Replace YYYY-MM-DD with the birthday date
+            const now = new Date();
+            const timeDifference = birthday - now;
+
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            if (timeDifference > 0) {
+                document.getElementById("days").innerText = days;
+                document.getElementById("hours").innerText = hours;
+                document.getElementById("minutes").innerText = minutes;
+                document.getElementById("seconds").innerText = seconds;
+            } else {
+                document.getElementById("message").innerText = "Happy Birthday, Shristi!";
+                document.getElementById("countdown").style.display = "none";
+                document.getElementById("surpriseButton").style.display = "inline-block";
+            }
+        }
+
+        setInterval(countdown, 1000);
+    </script>
+</body>
+</html>
